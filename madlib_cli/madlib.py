@@ -1,12 +1,27 @@
+import getpass
+import re
+
+from pyfiglet import Figlet
+from termcolor import colored
+
 
 def welcome():
-    print("Hello , ")
-    print("Please enter the following words:")
-"""
-Print a welcome message to the user, 
-- explaining the Madlib process 
-- command line interactions
-"""
+    """
+    Print a welcome message to the user,
+        - explaining the  process
+        - command line interactions
+    """
+    logo = Figlet(font='standard')
+    print(colored(logo.renderText('madLib'), "red"))
+    print(colored(logo.renderText("Hello ,{}\n".format(getpass.getuser())), "cyan"))    
+    print(colored(('='*80), "red"))
+    print(colored(("Welcome to madLib!"), "white"))
+    print(colored(("This program will help you create a madlib from a template."), "white"))
+    print(colored(("You will be prompted for words to fill in the blanks."), "white"))
+    input(colored(("Press enter to continue..."), "cyan"))
+    print(colored(('='*80), "red"))
+
+welcome()
 """
 Read a template Madlib file. and parse that file into usable parts.
 
@@ -75,16 +90,14 @@ def read_template(path: str):
         if err.__cause__ is FileNotFoundError:
             raise FileNotFoundError(err.__cause__)
 
-import re
-
 
 def parse_template(content: str):
     pat = r"(?<=\{).+?(?=\})"
     language_parts = re.findall(pat, content)
     for part in language_parts:
-        content = re.sub('{}'.format(part), "", content)
+        content = re.sub("{}".format(part), "", content)
 
-    return str(content), tuple(language_parts)
+    return tuple(language_parts),content
 
 
 def merge():
@@ -93,7 +106,6 @@ def merge():
 
 path = "./Madlib .txt"
 file_content = read_template(path)
-
 
 
 content, language_parts = parse_template(file_content)
