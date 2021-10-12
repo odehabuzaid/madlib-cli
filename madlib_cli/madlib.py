@@ -73,12 +73,12 @@ import re
 
 
 def parse_template(content: str):
+    pat = r"(?<=\{).+?(?=\})"
+    language_parts = re.findall(pat, content)
+    for part in language_parts:
+        content = re.sub(f"{part}".format(part).format(part), "", content)
     print()
-    language_parts = []
-    pat = r'(?<=\{).+?(?=\})'
-    match = re.findall(pat, content)
-    print(match)
-
+    print(language_parts)
     print()
     print(content)
     return content, language_parts
@@ -95,4 +95,3 @@ file_content = read_template(path)
 print()
 content, language_parts = parse_template(file_content)
 print()
-print(content)
