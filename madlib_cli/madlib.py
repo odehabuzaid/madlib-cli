@@ -1,8 +1,13 @@
+
+def welcome():
+    print("Hello , ")
+    print("Please enter the following words:")
 """
 Print a welcome message to the user, 
 - explaining the Madlib process 
 - command line interactions
-
+"""
+"""
 Read a template Madlib file. and parse that file into usable parts.
 
 Prompt the user to submit a series of words to fit each of the required components of the Madlib template.
@@ -57,6 +62,8 @@ Note: A smaller example file is included as well which can be handy when develop
 """
     TODO [x] : create a function that takes path and returns a stripped string of the file’s contents.
     TODO [x] : create a function that takes template string and returns a string with language parts removed and a separate list of those language parts.    
+    TODO [x] : create a function that takes a “bare” template and a list of user entered language parts, and returns a string with the language parts inserted into the template.
+
 """
 
 
@@ -77,7 +84,7 @@ def parse_template(content: str):
     for part in language_parts:
         content = re.sub('{}'.format(part), "", content)
 
-    return content, language_parts
+    return str(content), tuple(language_parts)
 
 
 def merge():
@@ -91,3 +98,4 @@ file_content = read_template(path)
 
 content, language_parts = parse_template(file_content)
 
+# print(parse_template("It was a {Adjective} and {Adjective} {Noun}."))
