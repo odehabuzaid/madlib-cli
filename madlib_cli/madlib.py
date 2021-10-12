@@ -76,10 +76,7 @@ def parse_template(content: str):
     language_parts = re.findall(pat, content)
     for part in language_parts:
         content = re.sub('{}'.format(part), "", content)
-    
-    print(language_parts)
-    print(content)
-    print(type(language_parts))
+
     return content, language_parts
 
 
