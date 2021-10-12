@@ -1,8 +1,9 @@
 import pytest
-from madlib_cli.madlib import merge, parse_template, read_template
+from madlib_cli.madlib import parse_template, read_template
+
 
 def test_read_template_returns_stripped_string():
-    actual = read_template("assets/dark_and_stormy_night_template.txt")
+    actual = read_template("./Madlib .txt")
     expected = "It was a {Adjective} and {Adjective} {Noun}."
     assert actual == expected
 
@@ -19,11 +20,11 @@ def test_parse_template():
     assert actual_parts == expected_parts
 
 
-@pytest.mark.skip("pending")
-def test_merge():
-    actual = merge("It was a {} and {} {}.", ("dark", "stormy", "night"))
-    expected = "It was a dark and stormy night."
-    assert actual == expected
+# @pytest.mark.skip("pending")
+# def test_merge():
+#     actual = merge("It was a {} and {} {}.", ("dark", "stormy", "night"))
+#     expected = "It was a dark and stormy night."
+#     assert actual == expected
 
 
 @pytest.mark.skip("pending")

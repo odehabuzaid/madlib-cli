@@ -56,7 +56,7 @@ Note: A smaller example file is included as well which can be handy when develop
 
 """
     TODO [x] : create a function that takes path and returns a stripped string of the file’s contents.
-    TODO [] : create a function that takes template string and returns a string with language parts removed and a separate list of those language parts.    
+    TODO [x] : create a function that takes template string and returns a string with language parts removed and a separate list of those language parts.    
 """
 
 
@@ -68,7 +68,6 @@ def read_template(path: str):
         if err.__cause__ is FileNotFoundError:
             raise FileNotFoundError(err.__cause__)
 
-
 import re
 
 
@@ -76,11 +75,11 @@ def parse_template(content: str):
     pat = r"(?<=\{).+?(?=\})"
     language_parts = re.findall(pat, content)
     for part in language_parts:
-        content = re.sub(f"{part}".format(part).format(part), "", content)
-    print()
+        content = re.sub('{}'.format(part), "", content)
+    
     print(language_parts)
-    print()
     print(content)
+    print(type(language_parts))
     return content, language_parts
 
 
@@ -92,6 +91,6 @@ path = "./Madlib .txt"
 file_content = read_template(path)
 
 
-print()
+
 content, language_parts = parse_template(file_content)
-print()
+
