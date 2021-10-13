@@ -26,7 +26,7 @@ def test_merge():
 
 # @pytest.mark.skip("pending")
 def test_save_template_raises_exception_with_bad_path():
-        with open('./assets/test1.txt', "w") as file:
+        with open('./assets/test1.txt', "w"):
             save_file('It was a {Adjective} and {Adjective} {Noun}.')
 
 

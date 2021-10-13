@@ -44,7 +44,6 @@ def merge(*args):
     for part in user_guesses:
         content = content.replace("{}".format("{}"), "{}".format(part), 1)
 
-    content = " ".join(content.split())
     return content
 
 
